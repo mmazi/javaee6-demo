@@ -6,17 +6,6 @@
         http://java.sun.com/xml/ns/javaee
         http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
 
-    <application>
-        <resource-bundle>
-            <base-name>com.housing.javaee6demo.myMessages</base-name>
-            <var>msgs</var>
-        </resource-bundle>
-        <locale-config>
-            <default-locale>sl</default-locale>
-            <supported-locale>en</supported-locale>
-        </locale-config>
-    </application>
-
     <navigation-rule>
         <navigation-case>
             <if>#{helloBean.gospod}</if>

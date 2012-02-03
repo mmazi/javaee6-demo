@@ -1,5 +1,13 @@
 package com.housing.javaee6demo.model;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Version;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.Collection;
@@ -11,19 +19,29 @@ import java.util.Set;
  * @author Matija Mazi <br/>
  * @created 9.1.12 17:22
  */
+@Entity
+@Table(name = "USERS")
 public class User implements Serializable {
+
+    @Id @Size(max = 40)
     private String username;
 
+    @Size(max = 127)
     private String name;
 
     private Date created;
 
+    @Version
     private Date updated;
 
+    @Size(max = 63)
     private String password;
 
+    @Size(max = 127)
     private String email;
 
+    @ElementCollection
+    @Enumerated(value = EnumType.STRING)
     private Set<Role> roles = new HashSet<Role>();
 
     protected User() { }

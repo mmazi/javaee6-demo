@@ -1,5 +1,10 @@
 package com.housing.javaee6demo.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.text.MessageFormat;
 
@@ -7,10 +12,16 @@ import java.text.MessageFormat;
  * @author Matija Mazi <br/>
  * @created 19.1.12 16:36
  */
+@Entity
 public class OrderItem implements Serializable {
+    @Id @GeneratedValue Long id;
 
+    @ManyToOne
+    @JoinColumn(updatable = false)
     private Order order;
 
+    @ManyToOne
+    @JoinColumn(updatable = false)
     private Product product;
 
     private Double quantity;

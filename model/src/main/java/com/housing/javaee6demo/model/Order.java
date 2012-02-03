@@ -1,5 +1,7 @@
 package com.housing.javaee6demo.model;
 
+import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -10,19 +12,29 @@ import java.util.List;
  * @author Matija Mazi <br/>
  * @created 9.1.12 17:22
  */
+@Entity
+@Table(name = "ORDERS")
 public class Order implements Serializable {
+    @Id @Size(max = 40)
     private String id;
 
     private Date created;
 
+    @Version
     private Date updated;
 
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("product")
     private List<OrderItem> items = new ArrayList<OrderItem>();
 
+    @ManyToOne
     private User creator;
 
+    @ManyToOne
     private User assignee;
 
+    @Enumerated(EnumType.STRING)
+    @Column(length = 31)
     private Status status;
 
     private String comments;

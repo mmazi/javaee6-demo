@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        template="WEB-INF/layout.xhtml">
+    <ui:define name="title">Hello!</ui:define>
+
+    <ui:define name="main">
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="name" value="Ime:"/><h:inputText id="name" value="#{helloBean.name}"/>
+                <h:outputLabel for="age" value="Starost:"/><h:inputText id="age" value="#{helloBean.age}"/>
+                <h:commandButton action="#{helloBean.sayHello}" value="Pozdrav!"/>
+            </h:panelGrid>
+        </h:form>
+        <h:messages/>
+
+        <h:outputText rendered="#{helloBean.name != null}" value="#{helloBean.greeting}"/>
+
+        <h:dataTable value="#{helloBean.letters}" var="l">
+            <h:column>Črka:</h:column>
+            <h:column>#{l}</h:column>
+        </h:dataTable>
+
+
+    </ui:define>
+</ui:composition>

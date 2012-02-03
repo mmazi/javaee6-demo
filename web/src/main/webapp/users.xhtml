@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+        template="WEB-INF/layout.xhtml">
+    <ui:define name="title">Users</ui:define>
+
+    <ui:define name="main">
+        <h:form>
+            Uporabnik:
+            <h:selectOneMenu value="#{users.selectedUser}">
+                <f:selectItems value="#{allUsers}" var="u" itemLabel="#{u.name}"/>
+            </h:selectOneMenu>
+            <h:commandButton value="Prikaži"/>
+        </h:form>
+
+        <h:messages/>
+
+        <h:panelGrid columns="2" rendered="#{users.selectedUser != null}">
+            <h:outputText value="Ime:"/><h:outputText value="#{users.selectedUser.name}"/>
+            <h:outputText value="Uporabniško ime:"/><h:outputText value="#{users.selectedUser.username}"/>
+            <h:outputText value="Ustvarjen:"/><h:outputText value="#{users.selectedUser.created}"/>
+            <h:outputText value="Vloge:"/>
+            <h:dataTable value="#{users.getRoles(users.selectedUser)}" var="r">
+                <h:column>#{r.description}</h:column>
+            </h:dataTable>
+        </h:panelGrid>
+
+    </ui:define>
+</ui:composition>

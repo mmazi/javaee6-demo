@@ -54,13 +54,19 @@ public class PersistentDataInitializer {
 
         log.debug("Done initializing, now querying...");
 
-        log.debug("kg unit (find): {}", em.find(Unit.class, "kg"));
-        log.debug("kg unit (query): {}", em.createQuery("select u from Unit u where u.id = :uid", Unit.class).setParameter("uid", "kg").getSingleResult());
-        log.debug("Moka: {}",
-                em.createQuery("select p from Product p where p.name = :fname", Product.class)
+        Unit unitKgFind = em.find(Unit.class, "kg");
+        log.debug("kg unit (find): {}", unitKgFind);
+        Unit unitKgQuery = em.createQuery("select u from Unit u where u.id = :uid", Unit.class).setParameter("uid", "kg").getSingleResult();
+        log.debug("kg unit (query): {}", unitKgQuery);
+
+        log.debug("Enakost kg: {}, {}", unitKgFind == unitKgQuery, kg == unitKgFind);
+
+        Product moka = em.createQuery("select p from Product p where p.name = :fname", Product.class)
                 .setParameter("fname", "Moka")
-                .getSingleResult()
-        );
+                .getSingleResult();
+        log.debug("Moka: {}", moka);
+
+        log.debug("Enakost kg pri moki: {}", kg == moka.getUnit());
 
         Number totalItems = em.createQuery(
                 "select sum(i.quantity) " +

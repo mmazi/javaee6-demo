@@ -57,8 +57,8 @@ public class PersistentDataInitializer {
         log.debug("kg unit (find): {}", em.find(Unit.class, "kg"));
         log.debug("kg unit (query): {}", em.createQuery("select u from Unit u where u.id = :uid", Unit.class).setParameter("uid", "kg").getSingleResult());
         log.debug("Moka: {}",
-                em.createQuery("select p from Product p where p.id = :pid", Product.class)
-                .setParameter("pid", flour.getId())
+                em.createQuery("select p from Product p where p.name = :fname", Product.class)
+                .setParameter("fname", "Moka")
                 .getSingleResult()
         );
 

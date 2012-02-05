@@ -1,7 +1,6 @@
 package com.housing.javaee6demo;
 
 import com.housing.javaee6demo.model.Order;
-import com.housing.javaee6demo.model.OrderItem;
 import com.housing.javaee6demo.model.Product;
 import com.housing.javaee6demo.model.Role;
 import com.housing.javaee6demo.model.Unit;
@@ -39,9 +38,9 @@ public class PersistentDataInitializer {
         Product ladder = new Product("Lestev", no, null);
         Product flour = new Product("Moka", kg, null);
 
-        order.addItem(new OrderItem(order, glasses, 2.));
-        order.addItem(new OrderItem(order, flour, 1.3));
-        order.addItem(new OrderItem(order, ladder, 3.));
+        order.addItem(glasses, 2.);
+        order.addItem(flour, 1.3);
+        order.addItem(ladder, 3.);
 
         em.persist(mm);
         em.persist(no);

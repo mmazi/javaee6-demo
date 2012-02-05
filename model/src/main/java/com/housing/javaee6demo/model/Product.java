@@ -1,6 +1,7 @@
 package com.housing.javaee6demo.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
@@ -14,8 +15,8 @@ import java.text.MessageFormat;
  */
 @Entity
 public class Product implements Serializable {
-    @Id @Size(max = 40)
-    private String id;
+    @Id @GeneratedValue
+    private Long id;
 
     @Size(max = 255) @NotNull
     private String name;
@@ -29,13 +30,12 @@ public class Product implements Serializable {
     protected Product() { }
 
     public Product(String name, Unit unit, ProductCategory category) {
-        this.id = name;
         this.name = name;
         this.unit = unit;
         this.category = category;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 

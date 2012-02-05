@@ -1,7 +1,6 @@
 package com.housing.javaee6demo.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,12 +13,13 @@ import java.text.MessageFormat;
  */
 @Entity
 public class OrderItem implements Serializable {
-    @Id @GeneratedValue Long id;
 
+    @Id
     @ManyToOne
     @JoinColumn(updatable = false)
     private Order order;
 
+    @Id
     @ManyToOne
     @JoinColumn(updatable = false)
     private Product product;

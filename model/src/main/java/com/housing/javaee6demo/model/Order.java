@@ -52,10 +52,6 @@ public class Order implements Serializable {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public Date getCreated() {
         return created;
     }
@@ -114,12 +110,10 @@ public class Order implements Serializable {
         return MessageFormat.format("Order[{0} {1}, created {2}, assigned to {3}]", id, status, created, assignee);
     }
 
-/*
     @PrePersist
     public void prePersist() {
-        this.id = UUID.randomUUID().toString();
+        this.id = MessageFormat.format("O/{0,date,medium}_{0,time,medium}", new Date());
     }
-*/
 
     public enum Status {
         RCV("Received"),

@@ -25,13 +25,11 @@ public class UserConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String username) {
-        log.debug("UserConverter.getAsObject: {}", username);
         return em.find(User.class, username);
     }
 
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
-        log.debug("UserConverter.getAsString: {}", o);
         return ((User)o).getUsername();
     }
 }

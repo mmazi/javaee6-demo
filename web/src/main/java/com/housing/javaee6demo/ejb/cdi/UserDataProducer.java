@@ -30,7 +30,6 @@ public class UserDataProducer implements Serializable {
     private List<Order> usersOrders;
 
     public void readUsersData(@Observes LoginEvent e) {
-        log.debug("UserDataProducer.readUsersData");
         usersOrders = em.createQuery("select o from Order o join fetch o.items where o.assignee = :u", Order.class)
                 .setParameter("u", e.getUser())
                 .getResultList();

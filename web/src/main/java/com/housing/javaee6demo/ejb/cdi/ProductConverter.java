@@ -25,13 +25,11 @@ public class ProductConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String productId) {
-        log.debug("ProductConverter.getAsObject: {}", productId);
         return em.find(Product.class, Long.parseLong(productId));
     }
 
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
-        log.debug("ProductConverter.getAsString: {}", o);
         return Long.toString(((Product)o).getId());
     }
 }

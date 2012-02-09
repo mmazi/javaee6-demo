@@ -13,6 +13,9 @@
 </h:head>
 
 <h:body>
+    <h:form>
+        <h:commandButton value="Odjava" action="#{authenticator.logout}"/>
+    </h:form>
     <h:messages/>
 
     <ui:insert name="main"/>

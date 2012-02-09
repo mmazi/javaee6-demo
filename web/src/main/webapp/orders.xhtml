@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+        template="WEB-INF/layout.xhtml">
+    <ui:define name="title">Orders</ui:define>
+
+    <ui:define name="main">
+        Uporabnik: #{authenticatedUser.name}
+        <h:form>
+            <h1>Naročila:</h1>
+            <h:dataTable styleClass="data" value="#{usersOrders}" var="o">
+                <h:column>
+                    <f:facet name="header">Št.</f:facet>
+                    <h:outputText value="#{o.id}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Status</f:facet>
+                    <h:outputText value="#{o.status.description}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Prejeto</f:facet>
+                    <h:outputText value="#{o.created}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Ustvaril</f:facet>
+                    <h:outputText value="#{o.creator.name}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Nazadnje spremenjeno</f:facet>
+                    <h:outputText value="#{o.updated}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Upravljalec</f:facet>
+                    <h:outputText value="#{o.assignee.name}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Komentar</f:facet>
+                    <h:outputText value="#{o.comments}"/>
+                </h:column>
+                <h:column>
+                    <h:commandButton value="Uredi" action="#{orderManager.editOrder(o)}"/>
+                </h:column>
+            </h:dataTable>
+
+            <h:commandButton value="Novo naročilo" action="#{orderManager.newOrder}"/>
+
+        </h:form>
+
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        template="WEB-INF/layout.xhtml">
+    <ui:define name="title">Orders</ui:define>
+
+    <ui:define name="main">
+        <h1>Pregled naročila #{editedOrder.id}</h1>
+
+        <h:panelGrid columns="2">
+            <h:outputText value="Št.:"/>
+            <h:outputText value="#{editedOrder.id}"/>
+
+            <h:outputText value="Status:"/>
+            <h:outputText value="#{editedOrder.status.description}"/>
+
+            <h:outputText value="Prejeto:"/>
+            <h:outputText value="#{editedOrder.created}"/>
+
+            <h:outputText value="Ustvaril:"/>
+            <h:outputText value="#{editedOrder.creator.name}"/>
+
+            <h:outputText value="Nazadnje spremenjeno:"/>
+            <h:outputText value="#{editedOrder.updated}"/>
+
+            <h:outputText value="Upravljalec:"/>
+            <h:outputText value="#{editedOrder.assignee.name}"/>
+
+            <h:outputText value="Komentar:"/>
+            <h:outputText value="#{editedOrder.comments}"/>
+        </h:panelGrid>
+
+        <h:form>
+            <h:commandButton value="Shrani" action="#{orderManager.saveOrder}"/>
+        </h:form>
+
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+        template="WEB-INF/layout.xhtml">
+    <ui:define name="title">Orders</ui:define>
+
+    <ui:define name="main">
+        <h1>Urejanje naročila #{editedOrder.id}</h1>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Status:" for="status"/>
+                <h:selectOneRadio id="status" value="#{editedOrder.status}">
+                    <f:selectItems value="#{allStatuses}"/>
+                </h:selectOneRadio>
+
+                <h:outputLabel value="Komentar:"/>
+                <h:inputText value="#{editedOrder.comments}"/>
+
+                <h:outputText/>
+                <h:commandButton value="Naprej" action="order-edit-3.xhtml"/>
+            </h:panelGrid>
+
+        </h:form>
+
+    </ui:define>
+</ui:composition>

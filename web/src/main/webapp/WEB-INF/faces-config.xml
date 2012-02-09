@@ -23,4 +23,19 @@
             <to-view-id>/gospod.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+
+    <navigation-rule>
+        <navigation-case>
+            <from-action>#{orderManager.saveOrder}</from-action>
+            <from-outcome>saved</from-outcome>
+            <to-view-id>/orders.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-action>#{authenticator.login}</from-action>
+            <from-outcome>logged-in</from-outcome>
+            <to-view-id>/orders.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

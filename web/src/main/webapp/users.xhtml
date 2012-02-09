@@ -22,7 +22,7 @@
             <h:outputText value="Uporabniško ime:"/><h:outputText value="#{users.selectedUser.username}"/>
             <h:outputText value="Ustvarjen:"/><h:outputText value="#{users.selectedUser.created}"/>
             <h:outputText value="Vloge:"/>
-            <h:dataTable value="#{users.getRoles(users.selectedUser)}" var="r">
+            <h:dataTable styleClass="data" value="#{users.getRoles(users.selectedUser)}" var="r">
                 <h:column>#{r.description}</h:column>
             </h:dataTable>
         </h:panelGrid>

@@ -64,6 +64,28 @@ public class Product implements Serializable {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        } else if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Product product = (Product) o;
+
+        if (id != null) {
+            return id.equals(product.id);
+        } else {
+            return product.id == null && super.equals(o);
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : super.hashCode();
+    }
+
+    @Override
     public String toString() {
         return MessageFormat.format("Product[{0} ({1})]", id, name);
     }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+        template="WEB-INF/layout.xhtml">
+    <ui:define name="title">Orders</ui:define>
+
+    <ui:define name="main">
+        <h1>Urejanje naročila #{editedOrder.id}</h1>
+        <h:form>
+            <h:dataTable styleClass="data" value="#{editedOrder.items}" var="item">
+                <h:column>
+                    <f:facet name="header">Proizvod</f:facet>
+                    <h:outputText value="#{item.product.name}"/>
+                    <f:facet name="footer">
+                        <h:selectOneMenu value="#{orderManager.selectedProduct}" converter="#{productConverter}">
+                            <f:selectItems value="#{allProducts}" var="p" itemLabel="#{p.name}"/>
+                        </h:selectOneMenu>
+                    </f:facet>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Enota</f:facet>
+                    <h:outputText value="#{item.product.unit.id}"/>
+                    <f:facet name="footer">
+                    </f:facet>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Količina</f:facet>
+                    <h:outputText value="#{item.quantity}"/>
+                    <f:facet name="footer">
+                        <h:inputText value="#{orderManager.quantity}"/>
+                    </f:facet>
+                </h:column>
+                <h:column>
+                    <f:facet name="footer">
+                        <h:commandLink value="Dodaj" action="#{orderManager.addItem}"/>
+                    </f:facet>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+        <h:form>
+            <h:commandButton value="Naprej" action="order-edit-4.xhtml"/>
+        </h:form>
+
+    </ui:define>
+</ui:composition>

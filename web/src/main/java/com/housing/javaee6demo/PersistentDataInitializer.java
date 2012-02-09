@@ -1,5 +1,6 @@
 package com.housing.javaee6demo;
 
+import com.housing.javaee6demo.ejb.cdi.UserCreator;
 import com.housing.javaee6demo.model.Order;
 import com.housing.javaee6demo.model.Product;
 import com.housing.javaee6demo.model.Role;
@@ -14,6 +15,7 @@ import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author Matija Mazi <br/>
@@ -49,6 +51,11 @@ public class PersistentDataInitializer {
         em.persist(flour);
         em.persist(ladder);
         em.persist(order);
+
+        List<User> users = UserCreator.createUsers();
+        for (User user : users) {
+            em.persist(user);
+        }
 
         em.flush();
 

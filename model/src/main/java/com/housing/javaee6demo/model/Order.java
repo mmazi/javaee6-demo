@@ -3,6 +3,7 @@ package com.housing.javaee6demo.model;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,7 +22,7 @@ public class Order implements Serializable {
     private Date created;
 
     @Version
-    private Date updated;
+    private Timestamp updated;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("product")

@@ -126,6 +126,27 @@ public class User implements Serializable {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        } else if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        User other = (User) o;
+        if (username != null) {
+            return username.equals(other.username);
+        } else {
+            return other.username == null && super.equals(o);
+        }
+
+    }
+
+    @Override
+    public int hashCode() {
+        return username != null ? username.hashCode() : super.hashCode();
+    }
+
+    @Override
     public String toString() {
         return MessageFormat.format("User[{0} ({1})]", username, name);
     }

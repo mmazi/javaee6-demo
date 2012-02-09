@@ -7,14 +7,12 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
-import javax.inject.Named;
 
 /**
  * @author Matija Mazi <br/>
  * @created 8.2.12 18:07
  */
 @Startup @Singleton
-@Named
 public class CounterClient1 {
     private static final Logger log = LoggerFactory.getLogger(CounterClient1.class);
 

@@ -8,7 +8,10 @@
 
     <ui:define name="main">
         <h:form>
-            <h:commandButton value="Zaženi počasno operacijo" action="#{slowBean.doLengthyOperation}"/>
+            <h:commandButton value="Zaženi počasno operacijo" action="#{sbc.callLengthyOperation}"/>
+            <h:commandButton value="Prekini" action="#{sbc.cancel}"/>
+            <h:commandButton value="Osveži"/>
         </h:form>
+        <h:outputText rendered="#{sbc.started}" value="#{sbc.done ? sbc.result : 'V teku...'}" style="background: #aea"/>
     </ui:define>
 </ui:composition>

@@ -10,7 +10,6 @@
     <modules>
         <module>model</module>
         <module>web</module>
-        <module>client</module>
     </modules>
 
     <dependencies>

@@ -6,7 +6,10 @@ import com.housing.javaee6demo.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.ejb.Stateless;
+import javax.annotation.PostConstruct;
+import javax.ejb.DependsOn;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
@@ -21,7 +24,9 @@ import java.util.List;
  * @author Matija Mazi <br/>
  * @created 9.2.12 13:36
  */
-@Stateless
+@DependsOn("PersistentDataInitializer")
+@Startup
+@Singleton
 public class GlobalDataProducer implements Serializable {
     private static final Logger log = LoggerFactory.getLogger(GlobalDataProducer.class);
 
@@ -30,6 +35,7 @@ public class GlobalDataProducer implements Serializable {
     private List<Product> allProducts;
     private List<User> allUsers;
 
+    @PostConstruct
     public void readAll() {
         log.debug("GlobalDataProducer.readAll");
         readAllUsers();

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        template="WEB-INF/layout.xhtml">
+    <ui:define name="title">Pozdravljeni!</ui:define>
+
+    <ui:define name="main">
+        Principal: #{securityDemo.principal}
+
+        <h:form>
+            <h:commandButton value="Admin" action="#{securityDemo.adminOnly}"/>
+            <h:commandButton value="Kdorkoli" action="#{securityDemo.forAllUsers}"/>
+            <h:commandButton value="Nihče" action="#{securityDemo.nobody}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

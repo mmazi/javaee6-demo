@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 
@@ -38,21 +39,26 @@ public class Authenticator implements Serializable {
 
     private String username;
 
-    public String login() {
+    public String login() throws ServletException {
         final Credentials cred = credentialsInstance.get();
         user = em.createQuery("select u from User u where u.username = :un and u.password = :pw", User.class)
                 .setParameter("un", cred.getUsername())
                 .setParameter("pw", cred.getPassword())
                 .getSingleResult();
         username = user.getUsername();
+        getRequest().login(cred.getUsername(), cred.getPassword());
         loginEvent.fire(new LoginEvent(user));
         log.debug("User {} logged in.", user.getName());
         return "logged-in";
     }
 
     public String logout() {
-        ((HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().invalidate();
+        getRequest().getSession().invalidate();
         return "/login.jsf";
+    }
+
+    private HttpServletRequest getRequest() {
+        return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
     }
 
     @Produces @Authenticated @Named

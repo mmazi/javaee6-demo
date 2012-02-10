@@ -18,6 +18,19 @@
         <url-pattern>*.hello</url-pattern>
     </servlet-mapping>
 
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Admin pages</web-resource-name>
+            <url-pattern>/secure/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-role><role-name>admin</role-name></security-role>
+    <security-role><role-name>orderer</role-name></security-role>
+
     <error-page>
         <exception-type>java.lang.Exception</exception-type>
         <location>/error.html</location>

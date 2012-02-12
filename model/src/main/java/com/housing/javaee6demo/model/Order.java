@@ -2,8 +2,10 @@ package com.housing.javaee6demo.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,18 +19,21 @@ import java.util.List;
 @Table(name = "ORDERS")
 public class Order implements Serializable {
     @Id @Size(max = 40)
+    @XmlAttribute(required = true)
+    @XmlID
     private String id;
 
     private Date created;
 
     @Version
-    private Timestamp updated;
+    private Date updated;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("product")
     private List<OrderItem> items = new ArrayList<OrderItem>();
 
     @ManyToOne
+    @XmlIDREF
     private User creator;
 
     @ManyToOne

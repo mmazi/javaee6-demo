@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlIDREF;
 import java.io.Serializable;
 import java.text.MessageFormat;
 
@@ -22,6 +23,7 @@ public class Product implements Serializable {
     private String name;
 
     @ManyToOne
+    @XmlIDREF
     private Unit unit;
 
     @ManyToOne

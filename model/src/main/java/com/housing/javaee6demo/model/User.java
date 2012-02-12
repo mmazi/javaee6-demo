@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.Collection;
@@ -21,8 +24,10 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "USERS")
+@XmlRootElement
 public class User implements Serializable {
 
+    @XmlID
     @Id @Size(max = 40)
     private String username;
 
@@ -35,6 +40,7 @@ public class User implements Serializable {
     private Date updated;
 
     @Size(max = 63)
+    @XmlTransient
     private String password;
 
     @Size(max = 127)

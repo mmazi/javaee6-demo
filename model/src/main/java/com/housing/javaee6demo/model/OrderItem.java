@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlIDREF;
 import java.io.Serializable;
 import java.text.MessageFormat;
 
@@ -18,6 +19,7 @@ public class OrderItem implements Serializable {
 
     @ManyToOne
     @JoinColumn(updatable = false)
+    @XmlIDREF
     private Order order;
 
     @ManyToOne
@@ -34,9 +36,9 @@ public class OrderItem implements Serializable {
         this.quantity = quantity;
     }
 
-    public Order getOrder() {
-        return order;
-    }
+//    public Order getOrder() {
+//        return order;
+//    }
 
     public Product getProduct() {
         return product;

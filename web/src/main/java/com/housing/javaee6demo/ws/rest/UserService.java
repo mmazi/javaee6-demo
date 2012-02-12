@@ -39,7 +39,7 @@ public class UserService {
 
     @GET
     @Path("user/{username}")
-    @Produces("application/xml")
+    @Produces({"application/xml", "application/json"})
     public User getUser(@PathParam("username") String username) {
         return em.find(User.class, username);
     }
